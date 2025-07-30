@@ -7,10 +7,14 @@ export default function Home() {
 
   const [isMouseDown, setMouseDown] = useState(false);
   const [coloredCells, setColoredCells] = useState(new Set());
+  const gridElement = document.getElementById("grid");
 
   const shake = () => {
     setColoredCells(new Set());
-    document.getElementById("grid").classList.add("animate-bounce");
+
+    gridElement.classList.add("animate-shake");
+    gridElement.classList.add("animate-twice");
+    gridElement.classList.add("animate-duration-[400ms]");
   };
 
   // listening for if mouse is being held down or not
@@ -28,6 +32,9 @@ export default function Home() {
   const handleMouseEnter = (index) => {
     if (isMouseDown) {
       setColoredCells((prev) => new Set(prev).add(index));
+      gridElement.classList.remove("animate-shake");
+      gridElement.classList.remove("animate-twice");
+      gridElement.classList.remove("animate-duration-[400ms]");
     }
   };
   // changing color on the grid element with a ternary operator ensures that we cannot recolor anything besides the grid divs
