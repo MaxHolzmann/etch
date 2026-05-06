@@ -7,7 +7,8 @@ export default function Home() {
 
   const [isMouseDown, setMouseDown] = useState(false);
   const [coloredCells, setColoredCells] = useState(new Set());
-  const gridElement = document.getElementById("grid");
+  const gridRef = useRef(null);
+  let gridElement = gridRef.current;
 
   const shake = () => {
     setColoredCells(new Set());
@@ -68,6 +69,7 @@ export default function Home() {
         </button>
         <div className="text-center flex justify-center pb-10">
           <div
+            ref={gridRef}
             id="grid"
             className="grid grid-cols-64 justify-center border-black border-2"
           >
